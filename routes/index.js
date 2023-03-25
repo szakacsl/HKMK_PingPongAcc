@@ -4,7 +4,11 @@ const { spawn } = require("child_process");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  const service = spawn("python", ["..\\python_service\\dummy.py"]);
+  const service = spawn("python", [
+    "..\\python_service\\dummy.py",
+    "param 0",
+    666,
+  ]);
 
   let dataToSend;
 
@@ -12,7 +16,9 @@ router.get("/", function (req, res, next) {
     console.log("Pipe data from python script ...");
     dataToSend = data.toString();
 
-    console.log(dataToSend);
+    // it receives and logs all the printed data in one batch
+    // replacing needed to parse json string from the python service
+    console.log(JSON.parse(dataToSend.replace(/'/g, '"')));
   });
 
   service.on("close", (code) => {
