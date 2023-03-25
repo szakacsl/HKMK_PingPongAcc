@@ -5,22 +5,10 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        units: {
+        name: {
             type: Sequelize.STRING,
             allowNull: false
-        },
-        amount: {
-            type: Sequelize.FLOAT,
-            allowNull: false
-        },
-        price: {
-            type: Sequelize.FLOAT,
-            allowNull: false
-        },
-        conv: {
-            type: Sequelize.FLOAT,
-            allowNull: false
-        },
+        }
     });
 
     return Categories;
