@@ -9,11 +9,12 @@ const { authJwt } = require("../middleware");
 /* GET users listing. */
 router.post('/register', [authJwt.verifyNoToken],async function (req, res, next) {
   try {
+    console.log(req.body);
     const user = await db.company.create({
       name: req.body.username,
       password: bcrypt.hashSync(req.body.password, 8),
-      address: req.body.address,
-      has_vouchers: (req.body.vouchers == 1),
+      address: "",
+      has_vouchers: 0
     });
     res.status(200).send('respond with a resource');
   }
@@ -26,7 +27,6 @@ router.post('/register', [authJwt.verifyNoToken],async function (req, res, next)
 router.post('/login', [authJwt.verifyNoToken],
 async function (req, res, next) {
   try {
-    console.log(req.body);
     const user = await db.company.findOne({
       where: {
         name: req.body.name,
@@ -58,6 +58,23 @@ async function (req, res, next) {
 
   } catch (error) {
     return res.status(500).send({message: error.message});
+  }
+});
+
+router.post('/edit', [authJwt.verifyCompanyToken], async function (req, res, next) {
+  try {
+    const user = await db.company.update({
+      name: req.body.username,
+      password: bcrypt.hashSync(req.body.password, 8),
+      address: req.body.voucher,
+      has_vouchers: (req.body.voucher == 1)
+    },{where:{
+      id:req.body.id
+    }});
+    res.status(200).send('respond with a resource');
+  } catch (e) {
+    console.log(e);
+    res.status(500).send('fail');
   }
 });
 
