@@ -1,8 +1,8 @@
-// mysql
 module.exports = {
     HOST: "localhost",
     USER: "root",
     PASSWORD: "Pandoricsima1.",
+    PORT: 3306,
     DB: "hackmk",
     dialect: "mysql",
     pool: {
@@ -12,12 +12,12 @@ module.exports = {
         idle: 10000
     }
 };
-// // mongodb
 // module.exports = {
-//     HOST: "localhost",
-//     USER: "boldizsarzoltan3",
-//     PASSWORD: "cl166Iavl27i3lOB",
-//     DB: "testdb",
+//     HOST: "mysql-117685-0.cloudclusters.net",
+//     USER: "admin",
+//     PASSWORD: "43sUXYqI.",
+//     PORT: 10043,
+//     DB: "hackmk",
 //     dialect: "mysql",
 //     pool: {
 //         max: 5,

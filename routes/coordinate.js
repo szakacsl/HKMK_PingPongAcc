@@ -5,10 +5,14 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   let coordinates = JSON.stringify(
       [
-        {
-          latitude: 46.770439,
-          longitude: 23.591423,
-        }
+        [
+          46.770439,
+          23.591423
+        ],
+        [
+          46.670439,
+          23.491423
+        ]
       ]
   )
   res.send(JSON.stringify(coordinates));
