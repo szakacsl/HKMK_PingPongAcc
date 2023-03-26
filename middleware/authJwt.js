@@ -21,7 +21,18 @@ verifyToken = (req, res, next) => {
     });
 };
 
+verifyNoToken = (req, res, next) => {
+    if (req.session.token) {
+        return res.status(403).send({
+            message: "Token provided!",
+        });
+    }
+
+    next();
+};
+
 const authJwt = {
     verifyToken,
+    verifyNoToken
 };
 module.exports = authJwt;
