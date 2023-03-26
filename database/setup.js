@@ -24,12 +24,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.user = require("../models/user.model")(sequelize, Sequelize);
-db.voucher = require("../models/voucher.model")(sequelize, Sequelize);
 db.company = require("../models/company.model")(sequelize, Sequelize);
+db.voucher = require("../models/voucher.model")(sequelize, Sequelize);
 db.products = require("../models/product.model")(sequelize, Sequelize);
 db.categories = require("../models/categories.model")(sequelize, Sequelize);
-db.user.hasMany(db.voucher);
-db.company.hasMany(db.voucher);
 db.categories.hasMany(db.products);
 db.company.hasMany(db.products);
 module.exports = db;

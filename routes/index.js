@@ -25,47 +25,52 @@ router.get('/start', async function (req, res, next) {
   );
 });
 
-function initial() {
-    db.user.create({
-        username:"test",
-        password:bcrypt.hashSync("test", 8),
+async function initial() {
+    user1 = await db.user.create({
+        username: "test",
+        password: bcrypt.hashSync("test", 8),
     });
-    db.user.create({
-        username:"test2",
-        password:bcrypt.hashSync("test2", 8)
+    user2 = await db.user.create({
+        username: "test2",
+        password: bcrypt.hashSync("test2", 8)
     });
-    db.company.create({
-        name:"test",
-        password:bcrypt.hashSync("test", 8),
-        address:"address",
-        has_vouchers:true
+    company1 = await db.company.create({
+        name: "test",
+        password: bcrypt.hashSync("test", 8),
+        address: "address",
+        has_vouchers: true
     });
-    db.company.create({
-        name:"test2",
-        password:bcrypt.hashSync("test2", 8),
-        address:"address2",
-        has_vouchers:false
+    company2 = await db.company.create({
+        name: "test2",
+        password: bcrypt.hashSync("test2", 8),
+        address: "address2",
+        has_vouchers: false
     });
-    db.categories.create({
-        name:"metal",
+    metalc = await db.categories.create({
+        name: "metal",
     });
-    db.categories.create({
-        name:"food",
+    await db.categories.create({
+        name: "food",
     });
-    db.categories.create({
-        name:"clothing",
+    await db.categories.create({
+        name: "clothing",
     });
-    db.categories.create({
-        name:"toys",
+    await db.categories.create({
+        name: "toys",
     });
-    db.categories.create({
-        name:"electronics",
+    await db.categories.create({
+        name: "electronics",
     });
-    db.categories.create({
-        name:"waste oil",
+    await db.categories.create({
+        name: "waste oil",
     });
-    db.categories.create({
-        name:"furniture",
+    await db.categories.create({
+        name: "furniture",
+    });
+    await db.products.create({
+        amount: 2,
+        price: 1,
+        conv: 0.8,
     });
 }
 

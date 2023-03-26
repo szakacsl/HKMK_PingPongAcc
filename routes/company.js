@@ -81,8 +81,11 @@ router.post('/edit', [authJwt.verifyCompanyToken], async function (req, res, nex
 
 router.get('/getproducts/:id', [authJwt.verifyCompanyToken], async function (req, res, next) {
   try {
-    console.log(req.params.id);
-    products = await db.products.findAll();
+    products = await db.products.findAll({
+      where: {
+        companyId: req.params.id
+      }
+    });
     res.status(200).json(products);
   } catch (e) {
     console.log(e);
