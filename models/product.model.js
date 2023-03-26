@@ -42,14 +42,16 @@ module.exports = (sequelize, Sequelize) => {
             references: {
                 model: Company, // 'Actors' would also work
                 key: 'id'
-            }
+            },
+            allowNull: false
         },
         categoryId: {
             type: Sequelize.INTEGER,
             references: {
                 model: Category, // 'Actors' would also work
                 key: 'id'
-            }
+            },
+            allowNull: false
         }
     });
 

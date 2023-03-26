@@ -71,6 +71,8 @@ async function initial() {
         amount: 2,
         price: 1,
         conv: 0.8,
+        categoryId:metalc.id,
+        companyId:company1.id
     });
 }
 
