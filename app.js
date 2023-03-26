@@ -7,8 +7,9 @@ var multer = require('multer');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var uploadRouter = require('./routes/upload.js');
-var coordinateRouter = require('./routes/coordinate.js');
+var uploadRouter = require('./routes/upload');
+var coordinateRouter = require('./routes/coordinate');
+var categoriesRouter = require('./routes/categories');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/upload', uploadRouter);
 app.use('/coordinate', coordinateRouter);
+app.use('/categories', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

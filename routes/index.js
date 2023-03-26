@@ -19,6 +19,7 @@ router.get('/start', async function (req, res, next) {
   ).then(
       () => {
           initial();
+          res.send("ok");
       }
   );
 });
@@ -45,19 +46,25 @@ function initial() {
         has_vouchers:false
     });
     db.categories.create({
-        name:"test2",
+        name:"metal",
     });
     db.categories.create({
-        name:"test2",
+        name:"food",
     });
     db.categories.create({
-        name:"test2",
+        name:"clothing",
     });
     db.categories.create({
-        name:"test2",
+        name:"toys",
     });
     db.categories.create({
-        name:"test2",
+        name:"electronics",
+    });
+    db.categories.create({
+        name:"waste oil",
+    });
+    db.categories.create({
+        name:"furniture",
     });
 }
 
