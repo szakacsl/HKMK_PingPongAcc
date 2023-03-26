@@ -2,6 +2,7 @@ var express = require('express');
 const db = require("../database/setup");
 const {USER} = require("../config/database");
 var router = express.Router();
+const bcrypt = require("bcryptjs");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,21 +28,21 @@ router.get('/start', async function (req, res, next) {
 function initial() {
     db.user.create({
         username:"test",
-        password:"test"
+        password:bcrypt.hashSync("test", 8),
     });
     db.user.create({
         username:"test2",
-        password:"test2"
+        password:bcrypt.hashSync("test2", 8)
     });
     db.company.create({
         name:"test",
-        password:"test",
+        password:bcrypt.hashSync("test", 8),
         address:"address",
         has_vouchers:true
     });
     db.company.create({
         name:"test2",
-        password:"test2",
+        password:bcrypt.hashSync("test2", 8),
         address:"address2",
         has_vouchers:false
     });

@@ -13,14 +13,14 @@ module.exports = {
     }
 };
 // module.exports = {
-//     HOST: "mysql-117685-0.cloudclusters.net",
-//     USER: "admin",
-//     PASSWORD: "43sUXYqI.",
-//     PORT: 10043,
-//     DB: "hackmk",
+//     HOST: "sql7.freemysqlhosting.net",
+//     USER: "sql7608586",
+//     PASSWORD: "8KF9YwbL4e",
+//     PORT: 3306,
+//     DB: "sql7608586",
 //     dialect: "mysql",
 //     pool: {
-//         max: 5,
+//         max: 1,
 //         min: 0,
 //         acquire: 30000,
 //         idle: 10000
