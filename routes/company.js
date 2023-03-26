@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const { authJwt } = require("../middleware");
 
 /* GET users listing. */
-router.post('/register', async function (req, res, next) {
+router.post('/register', [authJwt.verifyNoToken],async function (req, res, next) {
   try {
     const user = await db.company.create({
       name: req.body.username,
@@ -48,7 +48,7 @@ async function (req, res, next) {
       });
     }
 
-    req.session.token = jwt.sign({id: user.id}, config.secret, {
+    req.session.token = jwt.sign({id: user.id}, config.company_secret, {
       expiresIn: 86400,
     });
 
@@ -61,7 +61,7 @@ async function (req, res, next) {
   }
 });
 
-router.post('/logout', [authJwt.verifyToken], function(req, res, next) {
+router.post('/logout', [authJwt.verifyCompanyToken], function(req, res, next) {
   try {
     req.session = null;
     return res.status(200).send({

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/auth.js");
 
-verifyToken = (req, res, next) => {
+verifyCompanyToken = (req, res, next) => {
     let token = req.session.token;
 
     if (!token) {
@@ -10,7 +10,27 @@ verifyToken = (req, res, next) => {
         });
     }
 
-    jwt.verify(token, config.secret, (err, decoded) => {
+    jwt.verify(token, config.company_secret, (err, decoded) => {
+        if (err) {
+            return res.status(401).send({
+                message: "Unauthorized!",
+            });
+        }
+        req.userId = decoded.id;
+        next();
+    });
+};
+
+verifyUserToken = (req, res, next) => {
+    let token = req.session.token;
+
+    if (!token) {
+        return res.status(403).send({
+            message: "No token provided!",
+        });
+    }
+
+    jwt.verify(token, config.user_secret, (err, decoded) => {
         if (err) {
             return res.status(401).send({
                 message: "Unauthorized!",
@@ -32,7 +52,8 @@ verifyNoToken = (req, res, next) => {
 };
 
 const authJwt = {
-    verifyToken,
+    verifyCompanyToken,
+    verifyUserToken,
     verifyNoToken
 };
 module.exports = authJwt;

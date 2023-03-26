@@ -1,3 +1,4 @@
 module.exports = {
-    secret: "bezkoder-secret-key"
+    user_secret: "bezkoder-secret-key-user",
+    company_secret: "bezkoder-secret-key-company",
 };
