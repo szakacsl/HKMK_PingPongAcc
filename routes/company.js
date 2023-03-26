@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const config = require("../config/auth");
 const jwt = require("jsonwebtoken");
 const { authJwt } = require("../middleware");
+const models = require("../database/setup");
 
 /* GET users listing. */
 router.post('/register', [authJwt.verifyNoToken],async function (req, res, next) {
@@ -77,6 +78,18 @@ router.post('/edit', [authJwt.verifyCompanyToken], async function (req, res, nex
     res.status(500).send('fail');
   }
 });
+
+router.get('/getproducts/:id', [authJwt.verifyCompanyToken], async function (req, res, next) {
+  try {
+    console.log(req.params.id);
+    products = await db.products.findAll();
+    res.status(200).json(products);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send('fail');
+  }
+});
+
 
 router.post('/logout', [authJwt.verifyCompanyToken], function(req, res, next) {
   try {
